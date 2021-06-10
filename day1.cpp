@@ -3,6 +3,21 @@
 学习构造函数，析构函数和拷贝函数
 */
 using namespace std;
+class Dog
+{
+    public:
+    Dog(int a);
+    //Dog Dog(Dog d);
+    int *age;
+};
+// Dog Dog::Dog(Dog d)
+// {
+
+// }
+Dog::Dog(int a)
+{
+    age=new int(a);
+}
 class Person
 {
     public:
@@ -23,6 +38,9 @@ int main()
     Person p2(2);
     cout<<"age="<<p2.age<<"  height="<<*p2.height<<endl;
     Person p3(p2);
+    Dog d(2);
+    Dog d1=d;
+    cout<<*d1.age<<endl;
     system("pause");
     cout<<"age="<<p3.age<<"  height="<<*p3.height<<endl;
     return 0;
