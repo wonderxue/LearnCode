@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.5.1)
+project(DAY1)
+set(PROJECT_BINARY_DIR build)
+set(SRC_LIST day8.cpp)
+add_executable(DAY8 ${SRC_LIST})
