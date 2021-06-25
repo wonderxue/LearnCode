@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-
+//二进制读写
 class Dog
 {
     public:
