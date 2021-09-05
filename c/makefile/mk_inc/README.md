@@ -21,8 +21,8 @@
 SUB_DIR:
 	for dir in $(SUB_DIR);do \
 	make -C $$dir; \
-	done#不能多线程
+	done #不能多线程
 
 SUB_DIR:
-    make -C $@#可以多线程-jn
+    make -C $@ #可以多线程-jn
 ```
