@@ -33,9 +33,9 @@ $(TAG):$(OBJ)
 	$(CC) -o $(OUT_DIR)/$@ $(wildcard $(OUT_DIR)/*.o)
 	@echo "\nbuild completed, run \"make install\" to install it\n"
 
-exec:
+exec:install
 	@./$(BIN_DIR)/$(TAG)
-install:
+install:all
 	$(CP) $(OUT_DIR)/$(TAG) $(BIN_DIR)/
 	@echo "\ninstall completed, run \"make exec\" to install it\n"
 clean:

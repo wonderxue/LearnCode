@@ -30,9 +30,9 @@ $(TAG):$(OBJ)
 	@echo "\nbuild completed, run \"make install\" to install it\n"
 %.o:%.c 
 	$(CC) -c $< $(INC) -o $(OUT_DIR)/$@
-exec:
+exec:install
 	@./$(BIN_DIR)/$(TAG)
-install:
+install:all
 	$(CP) $(OUT_DIR)/$(TAG) $(BIN_DIR)/
 	@echo "\ninstall completed, run \"make exec\" to install it\n"
 clean:
