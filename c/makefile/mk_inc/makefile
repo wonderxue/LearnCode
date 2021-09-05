@@ -1,13 +1,13 @@
 TAG:=main
-OUT_DIR:=build
-BIN_DIR:=bin
-VPATH:=src
-SRC:=$(foreach i,$(subst :, ,$(VPATH)),$(wildcard $(i)/*.c))
-OBJ:=$(SRC:.c=.o)
-INC:=-Iinc
 CC:=gcc
 RM:=rm
 CP:=cp
+OUT_DIR:=$(PWD)/build
+BIN_DIR:=bin
+INC:=-I$(PWD)/inc
+SUB_DIR:=./src/add \
+		./src/main \
+		./src/sub
 
 define DIR_CHECK
 	@echo "checking dir->$(1) whether exist"
@@ -20,16 +20,19 @@ define DIR_CHECK
 endef
 
 .PHONY:all exec install clean
-all:DIR $(TAG)
+all:DIR SUB_DIR $(TAG)
 DIR:
 	$(call DIR_CHECK,$(OUT_DIR))
 	$(call DIR_CHECK,$(BIN_DIR))
-	$(foreach i,$(subst :, ,$(VPATH)),$(call DIR_CHECK,$(OUT_DIR)/$(i)))
+export CC OUT_DIR INC
+SUB_DIR:
+	for dir in $(SUB_DIR);do \
+	make -C $$dir; \
+	done
 $(TAG):$(OBJ)
-	$(CC) -o $(OUT_DIR)/$@ $(foreach i,$^,$(OUT_DIR)/$(i))
+	$(CC) -o $(OUT_DIR)/$@ $(wildcard $(OUT_DIR)/*.o)
 	@echo "\nbuild completed, run \"make install\" to install it\n"
-%.o:%.c 
-	$(CC) -c $< $(INC) -o $(OUT_DIR)/$@
+
 exec:
 	@./$(BIN_DIR)/$(TAG)
 install:
