@@ -4,7 +4,7 @@
 struct ss{
     char a;
     long c;
- }__attribute__((aligned(2),packed));//aligned只能增大，如果要减小要和packed一起使用
+ }__attribute__((packed));
 //#pragma pack()
 int main()
 {
